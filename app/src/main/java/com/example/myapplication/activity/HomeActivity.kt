@@ -1,16 +1,13 @@
 package com.example.myapplication.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.example.myapplication.R
 import com.example.myapplication.dao.Connection
 import com.example.myapplication.enity.Season
@@ -26,11 +23,11 @@ class HomeActivity: AppCompatActivity() {
         val intentGet = intent
         val loginUserId = intentGet.getStringExtra("loginUserId")
 
-
         //controls
         val linearLayout= findViewById<LinearLayout>(R.id.linearButton)
         val buttonAdd = findViewById<Button>(R.id.buttonAdd)
         val spinner = findViewById<Spinner>(R.id.spinnerYear)
+
         //database
         val db = Connection(applicationContext).getConnection()
         val user = db.userDao().getUserById(Integer.parseInt(loginUserId))
@@ -47,7 +44,7 @@ class HomeActivity: AppCompatActivity() {
             val button = Button(this)
 
             var sum = 0.00F;
-            val listTransaction = db.transactionDao().findSeasonByUserIdAndYear(season.id)
+            val listTransaction = db.transactionDao().findTransactionsBySeasonId(season.id)
             for(transaction:Transaction in listTransaction){
                 sum+=transaction.amount
             }
@@ -55,7 +52,16 @@ class HomeActivity: AppCompatActivity() {
             // set layout
             button.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             button.textSize = 17F
-            button.text = "Sezon "+season.year+"\nPODSUMOWANIE: "+sum+user.currency
+
+            if(sum>0){
+                button.setTextColor(Color.GREEN)
+            }else if(sum<0){
+                button.setTextColor(Color.RED)
+            }else{
+                button.setTextColor(Color.BLACK)
+            }
+
+            button.text = "Sezon "+season.year+"\nPODSUMOWANIE: "+sum+" "+user.currency
 
             // add Button to LinearLayout
             linearLayout.addView(button)
@@ -63,6 +69,7 @@ class HomeActivity: AppCompatActivity() {
             button.setOnClickListener {
                 val i = Intent(this, FinanceActivity::class.java)
                 i.putExtra("loginUserId", user.id.toString())
+                i.putExtra("seasonId", season.id.toString())
                 startActivity(i)
             }
         }
@@ -79,11 +86,15 @@ class HomeActivity: AppCompatActivity() {
             if(error){
                 val s = Season(user.id,spinner.selectedItem.toString())
                 db.seasonDao().insertSeason(s)
+                finish()
+                overridePendingTransition(0, 0)
                 val reload = Intent(this, HomeActivity::class.java)
                 reload.putExtra("loginUserId", user.id.toString())
                 startActivity(intent)
+                overridePendingTransition(0, 0)
             }
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -105,6 +116,8 @@ class HomeActivity: AppCompatActivity() {
             user.currency="€"
         }
     }
-
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 
 }

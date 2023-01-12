@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
         val buttonChangeOnRegister = findViewById<TextView>(R.id.buttonChangeOnRegister)
+
         //database
         val db = Connection(applicationContext).getConnection()
 
@@ -41,9 +43,11 @@ class LoginActivity : AppCompatActivity() {
                 passwordEditText.setText("")
                 Toast.makeText(this@LoginActivity, R.string.incorrectLoginOrPassword, Toast.LENGTH_SHORT).show()
             }
-
         }
+    }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true)
     }
 
 }

@@ -7,6 +7,6 @@ import com.example.myapplication.enity.Transaction
 @Dao
 interface TransactionDao {
     @Query("select * from 'transaction' where season_id = :seasonID")
-    fun findSeasonByUserIdAndYear(seasonID: Int): List<Transaction>
+    fun findTransactionsBySeasonId(seasonID: Int): List<Transaction>
 
 }

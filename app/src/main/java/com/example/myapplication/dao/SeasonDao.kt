@@ -15,4 +15,7 @@ interface SeasonDao {
 
     @Query("select * from season where user_id=:userID")
     fun findSeasonByUserId(userID: Int):List<Season>
+
+    @Query("select * from season where id=:seasonID")
+    fun findSeasonBySeasonId(seasonID: Int):Season
 }

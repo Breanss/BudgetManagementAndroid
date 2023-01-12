@@ -70,6 +70,9 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if (!error) {
+                textViewErrorEmail.setText("")
+                textViewErrorName.setText("")
+                textViewErrorPassword.setText("")
                 val user = User(
                     nameEditText.text.toString(),
                     spinner.selectedItem.toString(),
