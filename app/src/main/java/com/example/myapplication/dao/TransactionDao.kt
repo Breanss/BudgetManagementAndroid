@@ -1,6 +1,7 @@
 package com.example.myapplication.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import com.example.myapplication.enity.Transaction
 
@@ -8,5 +9,8 @@ import com.example.myapplication.enity.Transaction
 interface TransactionDao {
     @Query("select * from 'transaction' where season_id = :seasonID")
     fun findTransactionsBySeasonId(seasonID: Int): List<Transaction>
+
+    @Insert
+    fun insertTransaction(transaction: Transaction)
 
 }

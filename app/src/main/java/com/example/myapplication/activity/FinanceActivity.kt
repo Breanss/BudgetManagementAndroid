@@ -1,37 +1,33 @@
 package com.example.myapplication.activity
 
 import android.content.Intent
-import android.graphics.PixelFormat
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.print.PrintAttributes.Margins
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams
-import android.view.ViewGroup.MarginLayoutParams
-import android.webkit.WebSettings.ZoomDensity
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import com.example.myapplication.R
 import com.example.myapplication.dao.Connection
-import org.w3c.dom.Text
+import com.example.myapplication.enity.Transaction
 
 class FinanceActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finance)
         val vatCheckBox = findViewById<CheckBox>(R.id.vatCheckBox)
         val addButton = findViewById<Button>(R.id.addFinanceButton)
+        val backButton = findViewById<Button>(R.id.backButton)
         val seasonTextView = findViewById<TextView>(R.id.seasonText)
         val vatEditText = findViewById<EditText>(R.id.vatEditText)
+        val amountEditText = findViewById<EditText>(R.id.amountEditText)
         val intent = intent
         val loginUserId = intent.getStringExtra("loginUserId")
         val seasonId = intent.getStringExtra("seasonId")
@@ -40,6 +36,20 @@ class FinanceActivity : AppCompatActivity() {
         val season = connection.seasonDao().findSeasonBySeasonId(Integer.parseInt(seasonId))
         seasonTextView.setText("Dodawanie finansów w roku "+season.year)
         setTitle("Witaj "+user.name)
+
+
+        addButton.setOnClickListener {
+            val transaction = Transaction(season.id, amountEditText.text.toString().toFloat(),"+")
+            connection.transactionDao().insertTransaction(transaction)
+
+        }
+
+        backButton.setOnClickListener {
+            val i = Intent(this, HomeActivity::class.java)
+            i.putExtra("numberTransaction", "asd")
+            setResult(RESULT_OK, i)
+            finish()
+         }
 
         vatCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -62,4 +72,12 @@ class FinanceActivity : AppCompatActivity() {
         startActivity(intentLogout)
         return true
     }
+    override fun onBackPressed() {
+        val i = Intent(this, HomeActivity::class.java)
+        i.putExtra("numberTransaction", "asd")
+        setResult(RESULT_OK, i)
+        finish()
+    }
+
+
 }

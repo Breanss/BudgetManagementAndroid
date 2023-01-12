@@ -16,10 +16,12 @@ import com.example.myapplication.enity.User
 
 
 class HomeActivity: AppCompatActivity() {
+    var saved:Bundle? = Bundle()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
+        val numberOfTransaction=0
+        saved = savedInstanceState
         val intentGet = intent
         val loginUserId = intentGet.getStringExtra("loginUserId")
 
@@ -27,6 +29,7 @@ class HomeActivity: AppCompatActivity() {
         val linearLayout= findViewById<LinearLayout>(R.id.linearButton)
         val buttonAdd = findViewById<Button>(R.id.buttonAdd)
         val spinner = findViewById<Spinner>(R.id.spinnerYear)
+        val numberTextView = findViewById<TextView>(R.id.numberTextView)
 
         //database
         val db = Connection(applicationContext).getConnection()
@@ -39,6 +42,7 @@ class HomeActivity: AppCompatActivity() {
 
         setCurrency(user)
         setTitle("Witaj "+user.name)
+        numberTextView.setText(numberOfTransaction.toString())
 
         for(season:Season in listSeasons){
             val button = Button(this)
@@ -70,7 +74,8 @@ class HomeActivity: AppCompatActivity() {
                 val i = Intent(this, FinanceActivity::class.java)
                 i.putExtra("loginUserId", user.id.toString())
                 i.putExtra("seasonId", season.id.toString())
-                startActivity(i)
+                startActivityForResult(i, 2)
+
             }
         }
 
@@ -120,4 +125,14 @@ class HomeActivity: AppCompatActivity() {
         moveTaskToBack(true)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 2) {
+            val transactionTextView = findViewById<TextView>(R.id.numberTextView)
+            val message = data?.getStringExtra("numberTransaction")
+            finish()
+            startActivity(getIntent())
+            println(message)
+        }
+    }
 }
