@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Budget management</string>
+    <string name="login">Sign in</string>
+    <string name="registation">Registration</string>
+    <string name="first_name">First name</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="currency">Currency</string>
+    <string name="register">Sign up</string>
+    <string name="logi">Login</string>
+    <string name="youNotHaveAccount">You don\'t have an account yet?</string>
+    <string name="incorrectLoginOrPassword">Incorrect login or password!</string>
+    <string name="passwordShuldContainLeast6">The password should contain at least 6 characters!</string>
+    <string name="passwordCannotContainOnlyLetters">The password cannot contain only letters!</string>
+    <string name="firstNameShuldContainLeast3">First name should contain at least 3 characters!</string>
+    <string name="firstNameCanOnlyContainLetters">First name can only contain letters!</string>
+    <string name="givenEmailIsAlreadyInUse">The given email is already in use!</string>
+    <string name="registerSuccess">Account added successfully!</string>
+    <string name="youHaveAccount">Already have an account?</string>
+    <string name="invalidEmailFormat">Invalid email format!</string>
+    <string name="buttonLogout">Logout</string>
+    <string name="add">Add</string>
+    <string name="annualSummaries">Annual summaries</string>
+    <string name="numberTransactions">Number of transactions added during the session:</string>
+    <string-array name="currency">
+        <item>Dolar</item>
+        <item>Pln</item>
+        <item>Euro</item>
+    </string-array>
+    <string-array name="years">
+        <item>2023</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+    </string-array>
+</resources>
