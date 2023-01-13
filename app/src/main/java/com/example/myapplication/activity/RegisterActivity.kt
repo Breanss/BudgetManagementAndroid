@@ -28,58 +28,64 @@ class RegisterActivity : AppCompatActivity() {
         val textViewErrorEmail = findViewById<TextView>(R.id.textViewErrorEmail)
         val textViewErrorPassword = findViewById<TextView>(R.id.textViewErrorPassword)
         val textViewErrorName = findViewById<TextView>(R.id.textViewErrorName)
-        val buttonChangeOnLogin = findViewById<TextView>(R.id.buttonChangeOnLogin)
+        val buttonChangeOnViewLogin = findViewById<TextView>(R.id.buttonChangeOnLogin)
         val spinner = findViewById<Spinner>(R.id.spinner)
+
         //database
-        val connection = Connection(applicationContext).getConnection()
+        val dbConnection = Connection(applicationContext).getConnection()
+
         //another
         val registerValidate = RegisterValidate()
-        val adapter = ArrayAdapter.createFromResource(this, R.array.currency, com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.currency,
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item
+        )
 
         adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
-        spinner.adapter=adapter
+        spinner.adapter = adapter
 
-        buttonChangeOnLogin.setOnClickListener {
+        buttonChangeOnViewLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
         registerButton.setOnClickListener {
             var error = false
-            textViewErrorEmail.setText("")
+            textViewErrorEmail.text=""
 
             try {
                 registerValidate.password(passwordEditText.text.toString())
             } catch (e: Exception) {
                 error = true
-                textViewErrorPassword.setText(getString(Integer.parseInt(e.message)))
+                textViewErrorPassword.text=getString(Integer.parseInt(e.message))
             }
 
             try {
                 registerValidate.email(emailEditText.text.toString(), applicationContext)
             } catch (e: Exception) {
                 error = true
-                textViewErrorEmail.setText(getString(Integer.parseInt(e.message)))
+                textViewErrorEmail.text=getString(Integer.parseInt(e.message))
             }
 
             try {
                 registerValidate.name(nameEditText.text.toString())
             } catch (e: Exception) {
                 error = true
-                textViewErrorName.setText(getString(Integer.parseInt(e.message)))
+                textViewErrorName.text=getString(Integer.parseInt(e.message))
             }
 
             if (!error) {
-                textViewErrorEmail.setText("")
-                textViewErrorName.setText("")
-                textViewErrorPassword.setText("")
+                textViewErrorEmail.text=""
+                textViewErrorName.text=""
+                textViewErrorPassword.text=""
                 val user = User(
                     nameEditText.text.toString(),
                     spinner.selectedItem.toString(),
                     emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 )
-                connection.userDao().insertUser(user)
+                dbConnection.userDao().insertUser(user)
                 Toast.makeText(this@RegisterActivity, R.string.registerSuccess, Toast.LENGTH_SHORT)
                     .show()
             }

@@ -21,27 +21,35 @@ class LoginActivity : AppCompatActivity() {
         val buttonLogin = findViewById<Button>(R.id.loginButton)
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
-        val buttonChangeOnRegister = findViewById<TextView>(R.id.buttonChangeOnRegister)
+        val buttonChangeOnViewRegister = findViewById<TextView>(R.id.buttonChangeOnRegister)
 
         //database
-        val db = Connection(applicationContext).getConnection()
+        val dbConnection = Connection(applicationContext).getConnection()
 
-        buttonChangeOnRegister.setOnClickListener {
+        buttonChangeOnViewRegister.setOnClickListener {
             val intentRegister = Intent(this, RegisterActivity::class.java)
             startActivity(intentRegister)
         }
 
-        buttonLogin.setOnClickListener{
+        buttonLogin.setOnClickListener {
 
-            val user = db.userDao().getUserByEmailAndPassword(emailEditText.text.toString(),passwordEditText.text.toString())
-            if(user!=null){
+            val user = dbConnection.userDao().getUserByEmailAndPassword(
+                emailEditText.text.toString(),
+                passwordEditText.text.toString()
+            )
+
+            if (user != null) {
                 val intentLogin = Intent(this, HomeActivity::class.java)
                 intentLogin.putExtra("loginUserId", user.id.toString())
                 startActivity(intentLogin)
-            }else{
+            } else {
                 emailEditText.setText("")
                 passwordEditText.setText("")
-                Toast.makeText(this@LoginActivity, R.string.incorrectLoginOrPassword, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@LoginActivity,
+                    R.string.incorrectLoginOrPassword,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

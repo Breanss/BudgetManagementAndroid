@@ -20,6 +20,9 @@
     <string name="invalidEmailFormat">Nieprawidłowy format meila!</string>
     <string name="buttonLogout">Logout</string>
     <string name="add">dodaj</string>
+    <string name="season">Sezon</string>
+    <string name="summary">Podsumowanie</string>
+    <string name="welcome">Witaj</string>
     <string name="annualSummaries">Roczne podsumowanie</string>
     <string name="numberTransactions">Liczba dodanych tranzakcji podczas sesji:</string>
 </resources>

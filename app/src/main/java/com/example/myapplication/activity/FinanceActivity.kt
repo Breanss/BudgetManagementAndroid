@@ -18,22 +18,30 @@ import com.example.myapplication.enity.Transaction
 
 class FinanceActivity : AppCompatActivity() {
 
+    private var numberTransaction = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finance)
-        val vatCheckBox = findViewById<CheckBox>(R.id.vatCheckBox)
-        val addButton = findViewById<Button>(R.id.addFinanceButton)
-        val backButton = findViewById<Button>(R.id.backButton)
-        val seasonTextView = findViewById<TextView>(R.id.seasonText)
-        val vatEditText = findViewById<EditText>(R.id.vatEditText)
-        val amountEditText = findViewById<EditText>(R.id.amountEditText)
+
+        //intentGet
         val intent = intent
         val loginUserId = intent.getStringExtra("loginUserId")
         val seasonId = intent.getStringExtra("seasonId")
+
+        //controls
+        val vatCheckBox = findViewById<CheckBox>(R.id.vatCheckBox)
+        val addButton = findViewById<Button>(R.id.addFinanceButton)
+        val backButton = findViewById<TextView>(R.id.backButton)
+        val seasonTextView = findViewById<TextView>(R.id.seasonText)
+        val vatEditText = findViewById<EditText>(R.id.vatEditText)
+        val amountEditText = findViewById<EditText>(R.id.amountEditText)
+
+        //database
         val connection = Connection(applicationContext).getConnection()
         val user = connection.userDao().getUserById(Integer.parseInt(loginUserId))
-        val season = connection.seasonDao().findSeasonBySeasonId(Integer.parseInt(seasonId))
+        val season = connection.seasonDao().findSeasonBySeasonId(Integer.parseInt(seasonId.toString()))
+
         seasonTextView.setText("Dodawanie finansów w roku "+season.year)
         setTitle("Witaj "+user.name)
 
@@ -41,12 +49,13 @@ class FinanceActivity : AppCompatActivity() {
         addButton.setOnClickListener {
             val transaction = Transaction(season.id, amountEditText.text.toString().toFloat(),"+")
             connection.transactionDao().insertTransaction(transaction)
-
+            numberTransaction++
         }
+
 
         backButton.setOnClickListener {
             val i = Intent(this, HomeActivity::class.java)
-            i.putExtra("numberTransaction", "asd")
+            i.putExtra("numberTransaction", numberTransaction.toString())
             setResult(RESULT_OK, i)
             finish()
          }
@@ -74,7 +83,7 @@ class FinanceActivity : AppCompatActivity() {
     }
     override fun onBackPressed() {
         val i = Intent(this, HomeActivity::class.java)
-        i.putExtra("numberTransaction", "asd")
+        i.putExtra("numberTransaction", numberTransaction.toString())
         setResult(RESULT_OK, i)
         finish()
     }
