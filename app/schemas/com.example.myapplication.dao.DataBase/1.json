@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "318abff71a4a68b78c790fddc2b988da",
+    "identityHash": "03a2c6e5198167c63194088de32359bd",
     "entities": [
       {
         "tableName": "User",
@@ -82,7 +82,7 @@
       },
       {
         "tableName": "Transaction",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`season_id` INTEGER, `amount` REAL NOT NULL, `type` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`season_id` INTEGER, `amount` REAL NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "season_id",
@@ -95,12 +95,6 @@
             "columnName": "amount",
             "affinity": "REAL",
             "notNull": true
-          },
-          {
-            "fieldPath": "type",
-            "columnName": "type",
-            "affinity": "TEXT",
-            "notNull": false
           },
           {
             "fieldPath": "id",
@@ -122,7 +116,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '318abff71a4a68b78c790fddc2b988da')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '03a2c6e5198167c63194088de32359bd')"
     ]
   }
 }

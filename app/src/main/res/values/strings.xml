@@ -25,12 +25,20 @@
     <string name="season">Season</string>
     <string name="summary">Summary</string>
     <string name="welcome">Welcome</string>
+    <string name="amount">Amount</string>
+    <string name="vat" translatable="false">Vat</string>
+    <string name="addingMoneyYear">Adding money in a year</string>
     <string name="annualSummaries">Annual summaries</string>
+    <string name="addVat">Add VAT?</string>
     <string name="numberTransactions">Number of transactions added during the session:</string>
     <string-array name="currency">
         <item>Dolar</item>
         <item>Pln</item>
         <item>Euro</item>
+    </string-array>
+    <string-array name="action">
+        <item>+</item>
+        <item>-</item>
     </string-array>
     <string-array name="years">
         <item>2023</item>

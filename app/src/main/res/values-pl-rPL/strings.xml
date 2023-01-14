@@ -19,6 +19,9 @@
     <string name="youHaveAccount">Posiadasz już konto?</string>
     <string name="invalidEmailFormat">Nieprawidłowy format meila!</string>
     <string name="buttonLogout">Logout</string>
+    <string name="amount">Kwota</string>
+    <string name="addVat">Dodać VAT?</string>
+    <string name="addingMoneyYear">Dodawanie pieniędzy w roku</string>
     <string name="add">dodaj</string>
     <string name="season">Sezon</string>
     <string name="summary">Podsumowanie</string>

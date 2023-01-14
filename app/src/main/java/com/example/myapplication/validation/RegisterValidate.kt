@@ -1,6 +1,5 @@
 package com.example.myapplication.validation
 import android.content.Context
-import android.provider.Settings.Global.getString
 import  com.example.myapplication.R
 
 

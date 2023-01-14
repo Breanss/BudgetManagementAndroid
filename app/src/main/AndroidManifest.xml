@@ -14,6 +14,7 @@
         tools:targetApi="31">
         <activity
             android:name=".activity.FinanceActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -21,6 +22,7 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +34,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.RegisterActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.HomeActivity"  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

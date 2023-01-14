@@ -8,9 +8,7 @@ import androidx.room.PrimaryKey
 class Transaction(@ColumnInfo(name="season_id")
                   var season_id: Int?,
                   @ColumnInfo(name="amount")
-                  var amount: Float,
-                  @ColumnInfo(name="type")
-                  var type: String?){
+                  var amount: Float){
                   @PrimaryKey(autoGenerate = true)
                   var id: Int = 0
 }

@@ -5,16 +5,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
 import com.example.myapplication.R
 import com.example.myapplication.dao.Connection
 import com.example.myapplication.enity.Transaction
+import com.example.myapplication.validation.AddTransactionValidate
 
 class FinanceActivity : AppCompatActivity() {
 
@@ -36,20 +34,58 @@ class FinanceActivity : AppCompatActivity() {
         val seasonTextView = findViewById<TextView>(R.id.seasonText)
         val vatEditText = findViewById<EditText>(R.id.vatEditText)
         val amountEditText = findViewById<EditText>(R.id.amountEditText)
+        val spinnerAction = findViewById<Spinner>(R.id.spinnerAction)
 
         //database
         val connection = Connection(applicationContext).getConnection()
         val user = connection.userDao().getUserById(Integer.parseInt(loginUserId))
         val season = connection.seasonDao().findSeasonBySeasonId(Integer.parseInt(seasonId.toString()))
 
-        seasonTextView.setText("Dodawanie finansów w roku "+season.year)
-        setTitle("Witaj "+user.name)
+        //another
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.action,
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item
+        )
+        adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
+        spinnerAction.adapter = adapter
+        seasonTextView.text =getString(R.string.addingMoneyYear) + " "+season.year
+        title = getString(R.string.welcome)+" "+user.name
 
 
         addButton.setOnClickListener {
-            val transaction = Transaction(season.id, amountEditText.text.toString().toFloat(),"+")
-            connection.transactionDao().insertTransaction(transaction)
-            numberTransaction++
+            var error = false
+            val addTransactionValidate=AddTransactionValidate()
+
+            try{
+                addTransactionValidate.amount(amountEditText.text.toString())
+            }catch (e:Exception){
+                error=true
+            }
+
+            if(vatCheckBox.isChecked){
+                try{
+                    addTransactionValidate.vat(vatEditText.text.toString())
+                }catch (e:Exception){
+                    error=true
+                }
+            }
+
+            if(!error) {
+                var tmp = amountEditText.text.toString().toFloat()
+
+                if (spinnerAction.selectedItem.equals("-")) {
+                    tmp *= (-1)
+                }
+                if (vatCheckBox.isChecked) {
+                    tmp += tmp * ((vatEditText.text.toString().toFloat()) / 100)
+                    vatEditText.setText("")
+                }
+                amountEditText.setText("")
+                val transaction = Transaction(season.id, tmp)
+                connection.transactionDao().insertTransaction(transaction)
+                numberTransaction++
+            }
         }
 
 
@@ -60,7 +96,7 @@ class FinanceActivity : AppCompatActivity() {
             finish()
          }
 
-        vatCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+        vatCheckBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 vatEditText.visibility= View.VISIBLE
                 addButton.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias =0.598F }

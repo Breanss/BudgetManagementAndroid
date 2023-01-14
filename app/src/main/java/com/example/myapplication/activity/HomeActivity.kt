@@ -13,6 +13,7 @@ import com.example.myapplication.dao.Connection
 import com.example.myapplication.enity.Season
 import com.example.myapplication.enity.Transaction
 import com.example.myapplication.enity.User
+import kotlin.math.roundToInt
 
 
 class HomeActivity : AppCompatActivity() {
@@ -67,6 +68,7 @@ class HomeActivity : AppCompatActivity() {
             for (transaction: Transaction in listTransaction) {
                 sum += transaction.amount
             }
+            sum=(sum*100.0).roundToInt()/100.0F
 
             // set layout
             button.layoutParams = LinearLayout.LayoutParams(
