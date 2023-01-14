@@ -24,6 +24,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
         //intentGet
         val intentGet = intent
         val loginUserId = intentGet.getStringExtra("loginUserId")
@@ -78,7 +79,7 @@ class HomeActivity : AppCompatActivity() {
             button.textSize = 17F
 
             if (sum > 0) {
-                button.setTextColor(Color.GREEN)
+                button.setTextColor(Color.rgb(37,107,0))
             } else if (sum < 0) {
                 button.setTextColor(Color.RED)
             } else {

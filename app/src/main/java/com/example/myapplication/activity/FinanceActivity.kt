@@ -21,6 +21,7 @@ class FinanceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finance)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //intentGet
         val intent = intent
@@ -30,7 +31,6 @@ class FinanceActivity : AppCompatActivity() {
         //controls
         val vatCheckBox = findViewById<CheckBox>(R.id.vatCheckBox)
         val addButton = findViewById<Button>(R.id.addFinanceButton)
-        val backButton = findViewById<TextView>(R.id.backButton)
         val seasonTextView = findViewById<TextView>(R.id.seasonText)
         val vatEditText = findViewById<EditText>(R.id.vatEditText)
         val amountEditText = findViewById<EditText>(R.id.amountEditText)
@@ -90,21 +90,13 @@ class FinanceActivity : AppCompatActivity() {
             }
         }
 
-
-        backButton.setOnClickListener {
-            val i = Intent(this, HomeActivity::class.java)
-            i.putExtra("numberTransaction", numberTransaction.toString())
-            setResult(RESULT_OK, i)
-            finish()
-         }
-
         vatCheckBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 vatEditText.visibility= View.VISIBLE
-                addButton.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias =0.598F }
+                addButton.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias =0.672F }
             }else{
                 vatEditText.visibility= View.INVISIBLE
-                addButton.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias =0.518F }
+                addButton.updateLayoutParams<ConstraintLayout.LayoutParams> { verticalBias =0.609F }
             }
         }
     }
@@ -115,10 +107,23 @@ class FinanceActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val intentLogout= Intent(this, LoginActivity::class.java)
-        startActivity(intentLogout)
+        when (item.itemId) {
+            android.R.id.home -> {
+                val i = Intent(this, HomeActivity::class.java)
+                i.putExtra("numberTransaction", numberTransaction.toString())
+                setResult(RESULT_OK, i)
+                finish()
+            }
+            R.id.logout->{
+                val intentLogout = Intent(this, LoginActivity::class.java)
+                startActivity(intentLogout)
+                return true
+            }
+
+        }
         return true
     }
+
     override fun onBackPressed() {
         val i = Intent(this, HomeActivity::class.java)
         i.putExtra("numberTransaction", numberTransaction.toString())
