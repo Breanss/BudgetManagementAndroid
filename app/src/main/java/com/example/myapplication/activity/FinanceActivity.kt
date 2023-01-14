@@ -35,6 +35,7 @@ class FinanceActivity : AppCompatActivity() {
         val vatEditText = findViewById<EditText>(R.id.vatEditText)
         val amountEditText = findViewById<EditText>(R.id.amountEditText)
         val spinnerAction = findViewById<Spinner>(R.id.spinnerAction)
+        val errorAmountEditText = findViewById<TextView>(R.id.errorAmountEditText)
 
         //database
         val connection = Connection(applicationContext).getConnection()
@@ -60,6 +61,7 @@ class FinanceActivity : AppCompatActivity() {
             try{
                 addTransactionValidate.amount(amountEditText.text.toString())
             }catch (e:Exception){
+                errorAmountEditText.text=getString(Integer.parseInt(e.message.toString()))
                 error=true
             }
 

@@ -28,7 +28,14 @@
     <string name="amount">Amount</string>
     <string name="vat" translatable="false">Vat</string>
     <string name="addingMoneyYear">Adding money in a year</string>
+    <string name="amountMustGreater0">The amount must be greater than 0!</string>
+    <string name="amountToLarge">Amount too large!</string>
+    <string name="vatToLarge">Vat too large!</string>
+    <string name="incorrectAmoutFormat">Incorrect amount format!</string>
     <string name="annualSummaries">Annual summaries</string>
+    <string name="passwordShuldNotMoreThan40">The password should not contain more than 40 characters!</string>
+    <string name="emailShuldNotMoreThan40">The email should not contain more than 40 characters!</string>
+    <string name="imieShuldNotMoreThan40">The first name should not contain more than 40 characters!</string>
     <string name="addVat">Add VAT?</string>
     <string name="numberTransactions">Number of transactions added during the session:</string>
     <string-array name="currency">

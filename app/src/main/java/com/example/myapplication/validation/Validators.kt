@@ -7,8 +7,12 @@ import java.util.regex.Pattern
 abstract class Validators {
     fun minimumLengthIsBad(text:String, minLength:Int):Boolean{
         if(text==null)
-            return true;
-        return text.length<minLength;
+            return true
+        return text.length<minLength
+    }
+
+    fun maximumLengthIsBad(text:String, maxLength:Int):Boolean{
+        return text.length>maxLength
     }
 
     fun canNotOnlyContainLetters(text: String):Boolean{
@@ -21,6 +25,22 @@ abstract class Validators {
         return !pattern.matcher(text).matches()
     }
 
+    fun canOnlyContainNumber(text: String):Boolean{
+        val pattern = Pattern.compile("[0-9.]+")
+        return !pattern.matcher(text).matches()
+    }
+
+    fun minimumNumberIsBad(text: String):Boolean{
+        if(text==null){
+            return true
+        }
+        return text.toFloat()<=0
+    }
+
+    fun maximumNumberIsBad(text: String, number:Int):Boolean{
+        return text.toFloat()>number
+    }
+
     fun incorrectFormatEmail(text: String):Boolean{
         val pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$")
         return !pattern.matcher(text).matches()
@@ -29,12 +49,12 @@ abstract class Validators {
     fun canNotTheSameEmail(text: String, context: Context):Boolean{
         val connection = Connection(context)
         val user = connection.getConnection().userDao().getUserByEmail(text)
-        var tmp = true;
+        var tmp = true
         try{
             user.email
         }catch (e:java.lang.NullPointerException){
-            tmp=false;
+            tmp=false
         }
-        return  tmp;
+        return  tmp
     }
 }

@@ -11,6 +11,9 @@ class RegisterValidate():Validators(){
         if(canNotOnlyContainLetters(text)){
             throw RegisterValidationException(R.string.passwordCannotContainOnlyLetters.toString())
         }
+        if(maximumLengthIsBad(text, 40)){
+            throw RegisterValidationException(R.string.passwordShuldNotMoreThan40.toString())
+        }
     }
 
     fun email(text: String, context: Context){
@@ -20,6 +23,9 @@ class RegisterValidate():Validators(){
 
         if(canNotTheSameEmail(text, context)){
             throw RegisterValidationException(R.string.givenEmailIsAlreadyInUse.toString())
+        }
+        if(maximumLengthIsBad(text, 40)){
+            throw RegisterValidationException(R.string.passwordShuldNotMoreThan40.toString())
         }
     }
 

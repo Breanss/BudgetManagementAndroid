@@ -14,8 +14,15 @@
     <string name="passwordCannotContainOnlyLetters">Hasło nie może zawierać samych liter!</string>
     <string name="firstNameShuldContainLeast3">Imie powinno zawierać minimum 3 znaki!</string>
     <string name="firstNameCanOnlyContainLetters">Imie może zawierać tylko litery!</string>
+    <string name="passwordShuldNotMoreThan40">Hasło nie powinno zawierać więcej niż 40 znaków!</string>
+    <string name="emailShuldNotMoreThan40">Email nie powinien zawierać więcej niż 40 znaków!</string>
+    <string name="imieShuldNotMoreThan40">Imie should not contain more than 40 characters!</string>
     <string name="givenEmailIsAlreadyInUse">Podany email już jest w użyciu!</string>
+    <string name="amountMustGreater0">Kwota musi być większa od 0!</string>
+    <string name="amountToLarge">Kwota zbyt duża!</string>
+    <string name="vatToLarge">Vat musi być mniejszy od 100!</string>
     <string name="registerSuccess">Dodanie konta powiodło się!</string>
+    <string name="incorrectAmoutFormat">Nieprawidłowy format kwoty!</string>
     <string name="youHaveAccount">Posiadasz już konto?</string>
     <string name="invalidEmailFormat">Nieprawidłowy format meila!</string>
     <string name="buttonLogout">Logout</string>
