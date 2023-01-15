@@ -80,7 +80,10 @@ class FinanceActivity : AppCompatActivity() {
                     tmp *= (-1)
                 }
                 if (vatCheckBox.isChecked) {
-                    tmp += tmp * ((vatEditText.text.toString().toFloat()) / 100)
+                    if(spinnerAction.selectedItem.equals("-"))
+                        tmp += tmp * ((vatEditText.text.toString().toFloat()) / 100)
+                    else
+                        tmp -= tmp * ((vatEditText.text.toString().toFloat()) / 100)
                     vatEditText.setText("")
                 }
                 amountEditText.setText("")
