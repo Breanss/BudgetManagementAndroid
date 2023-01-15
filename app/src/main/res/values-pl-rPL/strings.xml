@@ -16,7 +16,7 @@
     <string name="firstNameCanOnlyContainLetters">Imie może zawierać tylko litery!</string>
     <string name="passwordShuldNotMoreThan40">Hasło nie powinno zawierać więcej niż 40 znaków!</string>
     <string name="emailShuldNotMoreThan40">Email nie powinien zawierać więcej niż 40 znaków!</string>
-    <string name="imieShuldNotMoreThan40">Imie should not contain more than 40 characters!</string>
+    <string name="imieShuldNotMoreThan40">Imie nie powinno zawierać więcej niż 40 znaków!</string>
     <string name="givenEmailIsAlreadyInUse">Podany email już jest w użyciu!</string>
     <string name="amountMustGreater0">Kwota musi być większa od 0!</string>
     <string name="amountToLarge">Kwota zbyt duża!</string>
@@ -34,5 +34,5 @@
     <string name="summary">Podsumowanie</string>
     <string name="welcome">Witaj</string>
     <string name="annualSummaries">Roczne podsumowanie</string>
-    <string name="numberTransactions">Liczba dodanych tranzakcji podczas sesji:</string>
+    <string name="numberTransactions">Liczba dodanych transakcji podczas sesji:</string>
 </resources>

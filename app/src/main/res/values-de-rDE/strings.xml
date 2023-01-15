@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Meine app</string>
+    <string name="youNotHaveAccount">Sie haben noch kein Konto?</string>
+    <string name="logi">Anmeldung</string>
+    <string name="register">Registrieren</string>
+    <string name="currency">Währung</string>
+    <string name="password">Passwort</string>
+    <string name="first_name">Name</string>
+    <string name="registation">Eintragung</string>
+    <string name="login">Anmeldung</string>
+    <string name="incorrectLoginOrPassword">Falsches Login oder Passwort!</string>
+    <string name="passwordShuldContainLeast6">Das Passwort sollte mindestens 6 Zeichen enthalten!</string>
+    <string name="passwordCannotContainOnlyLetters">Das Passwort darf nicht nur Buchstaben enthalten!</string>
+    <string name="firstNameShuldContainLeast3">Der Name sollte mindestens 3 Zeichen enthalten!</string>
+    <string name="firstNameCanOnlyContainLetters">Der Name darf nur Buchstaben enthalten!</string>
+    <string name="passwordShuldNotMoreThan40">Das Passwort sollte nicht mehr als 40 Zeichen enthalten!</string>
+    <string name="emailShuldNotMoreThan40">E-Mail sollte nicht mehr als 40 Zeichen enthalten!</string>
+     <string name="imieShuldNotMoreThan40">Der Name sollte nicht mehr als 40 Zeichen enthalten!</string>
+    <string name="givenEmailIsAlreadyInUse">Die angegebene E-Mail-Adresse wird bereits verwendet!</string>
+    <string name="amountMustGreater0">Der Betrag muss größer als 0 sein!</string>
+    <string name="amountToLarge">Menge zu groß!</string>
+    <string name="vatToLarge">Die Mehrwertsteuer muss unter 100 liegen!</string>
+    <string name="registerSuccess">Konto erfolgreich hinzugefügt!</string>
+    <string name="incorrectAmoutFormat">Ungültiges Betragsformat!</string>
+    <string name="youHaveAccount">Sie haben bereits ein Konto?</string>
+    <string name="invalidEmailFormat">Ungültiges Email-Format!</string>
+    <string name="buttonLogout">Ausloggen</string>
+    <string name="amount">Summe</string>
+    <string name="addVat">Mehrwertsteuer hinzufügen?</string>
+    <string name="addingMoneyYear">In einem Jahr Geld hinzufügen</string>
+    <string name="add">hinzufügen</string>
+    <string name="season">Jahreszeit</string>
+    <string name="summary">Zusammenfassung</string>
+    <string name="welcome">Hallo</string>
+    <string name="annualSummaries">Jährliche Zusammenfassung</string>
+    <string name="numberTransactions">Die Anzahl der während der Sitzung hinzugefügten Transaktionen:</string>
+</resources>
